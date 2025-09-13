@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devant Pal | Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f;
+            color: #8892b0;
+        }
+        #typed-output {
+            color: rgb(209, 150, 39);
+        }
+        #name {
+            color: rgb(102, 135, 159);
+        }
+        ::selection {
+            background-color: #64ffda;
+            color: #0a192f;
+        }
+        .section-heading {
+            @apply text-3xl font-bold text-gray-200 mb-4 relative flex items-center;
+        }
+        .section-heading::after {
+            content: '';
+            display: block;
+            position: relative;
+            top: 2px;
+            width: 300px;
+            height: 1px;
+            margin-left: 20px;
+            background-color: #233554;
+        }
+        .card {
+            background-color: #112240;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+        }
+        .tag {
+            @apply inline-block bg-cyan-900/50 text-cyan-300 text-xs font-mono mr-2 mb-2 px-3 py-1 rounded;
+        }
+        .nav-link {
+            @apply text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-mono;
+        }
+        .nav-link.active {
+            color: #64ffda; /* Active link color */
+        }
+        .btn {
+            @apply inline-block border border-cyan-400 text-cyan-400 font-mono py-3 px-6 rounded hover:bg-cyan-900/50 transition-colors duration-300;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .contact-form-bg {
+            background-color: #112240;
+        }
+        .form-input {
+            background-color: #0a192f;
+            border: 1px solid #233554;
+            color: #d1d5db;
+            @apply w-full p-3 rounded-md text-sm transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400;
+        }
+        .form-input::placeholder {
+            color: #4b5563;
+        }
+        .send-btn {
+            background-color: #64ffda;
+            color: #0a192f;
+            @apply w-full font-bold py-3 px-6 rounded-md transition-colors duration-300 hover:bg-cyan-300;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-navy-dark/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 transition-transform duration-300">
+        <div class="container mx-auto px-6 md:px-10 py-4 flex justify-between items-center">
+            <a href="#hero" class="logo text-cyan-400 text-2xl font-mono">{ Dev }</a>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Work</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="https://github.com/your-github-profile" target="_blank" class="nav-link">
+                    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-.867-.592.065-.58.065-.58 1.005.07 1.532 1.03 1.532 1.03.892 1.527 2.34 1.084 2.91.83.09-.645.35-1.083.635-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.988 1.03-2.688-.1-.255-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.026.8-.222 1.65-.333 2.5-.333.85 0 1.7.11 2.5.333 1.91-1.296 2.75-1.026 2.75-1.026.55 1.38.2 2.395.1 2.65.64.7 1.03 1.595 1.03 2.688 0 3.84-2.33 4.69-4.56 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .32.22.69.82.57C20.56 22.092 24 17.592 24 12.297 24 5.67 18.63 0 12 0z"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="nav-link">
+                    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 md:px-24 py-24">
+        <section id="hero" class="min-h-screen flex flex-col justify-center -mt-20">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-gray-200 leading-tight mb-4"><span id="name">Hi, I'm </span>Devant Pal.</h1>
+                <h2 class="text-4xl md:text-6xl font-extrabold text-gray-400 leading-tight mb-8">
+                    I build things for <span id="typed-output"></span>
+                </h2>
+                <p class="max-w-xl text-lg mb-8">
+                    I'm a results-oriented Full Stack Developer specializing in MERN Stack, Blockchain, and IoT. I'm passionate about architecting scalable applications and leveraging emerging tech to create high-impact results.
+                </p>
+                <a href="#contact" class="btn text-xl">Get In Touch!</a>
+            </div>
+        </section>
+
+        <section id="about" class="py-24">
+            <div class="fade-in">
+                <h2 class="section-heading">About Me</h2>
+                <div class="grid md:grid-cols-5 gap-10 items-center">
+                    <div class="md:col-span-3 text-lg">
+                        <p class="mb-4">Hello! I'm Devant, a developer driven by a passion for solving complex problems. My journey into technology is fueled by a desire to build secure, scalable, and impactful digital solutions. From co-inventing a patented crypto wallet to developing end-to-end IoT systems, I enjoy turning ambitious ideas into reality.</p>
+                        <p class="mb-4">I thrive in agile environments and am committed to continuous learning. My goal is to always be at the forefront of technology, creating products that are not only functional but also a delight to use.</p>
+                        <ul class="grid grid-cols-2 gap-2 font-mono text-sm mt-6">
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">▹</span>JavaScript (ES6+)</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">▹</span>React / Next.js</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">▹</span>Node.js / Express</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">▹</span>MongoDB</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">▹</span>Solidity / Web3.js</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">▹</span>IoT (Arduino/ESP32)</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-2 flex justify-center items-start">
+                         <div class="w-64 h-80 rounded-lg bg-gray-800 relative group">
+                            <div class="absolute inset-0 bg-cyan-400 rounded-lg transform transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3"></div>
+                            <div class="absolute inset-0 rounded-lg overflow-hidden border-2 border-cyan-400">
+                                <img src="Img.jpg" alt="Devant Pal" class="w-full h-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-24">
+            <div class="fade-in">
+                <h2 class="section-heading">Where I've Gained Experience</h2>
+                 <div class="card p-8 mt-8">
+                    <h3 class="text-xl font-bold text-gray-200">Web Developer Intern <span class="text-cyan-400">@ Lightup Technologies</span></h3>
+                    <p class="font-mono text-sm mb-4">July 2025 - September 2025</p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Assisted in the full-stack design, development, and maintenance of web applications using React.js and Node.js.</li>
+                        <li>Collaborated with UI/UX and backend teams to integrate REST APIs, enhancing application performance and responsiveness.</li>
+                        <li>Boosted application speed by 15% through meticulous debugging and performance optimization techniques.</li>
+                    </ul>
+                 </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-24">
+            <div class="fade-in">
+                <h2 class="section-heading">Some Things I've Built</h2>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                    <div class="card p-6 flex flex-col group">
+                        <div class="flex justify-between items-center mb-4">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                           <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-200 group-hover:text-cyan-400 transition-colors mb-2">Cloud-Based Crypto Wallet</h4>
+                        <p class="flex-grow text-sm">A patented, secure cryptocurrency wallet featuring distributed key storage and multi-factor authentication.</p>
+                        <div class="mt-4">
+                           <span class="tag">Node.js</span><span class="tag">React Native</span><span class="tag">Web3.js</span>
+                        </div>
+                    </div>
+                    <div class="card p-6 flex flex-col group">
+                        <div class="flex justify-between items-center mb-4">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                           <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-200 group-hover:text-cyan-400 transition-colors mb-2">E-Voting System</h4>
+                        <p class="flex-grow text-sm">Decentralized voting platform on the Ethereum blockchain ensuring transparency and security with smart contracts.</p>
+                         <div class="mt-4">
+                           <span class="tag">Solidity</span><span class="tag">React</span><span class="tag">Truffle</span>
+                        </div>
+                    </div>
+                    <div class="card p-6 flex flex-col group">
+                         <div class="flex justify-between items-center mb-4">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                           <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-200 group-hover:text-cyan-400 transition-colors mb-2">HeartLife IoT ECG Monitor</h4>
+                        <p class="flex-grow text-sm">A portable, real-time ECG monitoring system with cloud-based data display and alerts for abnormal readings.</p>
+                         <div class="mt-4">
+                           <span class="tag">IoT</span><span class="tag">Python</span><span class="tag">Arduino</span>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-24">
+             <div class="fade-in">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-200">Contact Me</h2>
+                    <p class="font-mono text-cyan-400 mt-2">Let's build something amazing together</p>
+                </div>
+
+                <div class="flex justify-center items-center space-x-4 mb-12">
+                     <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="text-gray-400 hover:text-white transition-transform hover:scale-110"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></a>
+                     <a href="https://github.com/your-github-profile" target="_blank" class="text-gray-400 hover:text-white transition-transform hover:scale-110"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-.867-.592.065-.58.065-.58 1.005.07 1.532 1.03 1.532 1.03.892 1.527 2.34 1.084 2.91.83.09-.645.35-1.083.635-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.988 1.03-2.688-.1-.255-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.026.8-.222 1.65-.333 2.5-.333.85 0 1.7.11 2.5.333 1.91-1.296 2.75-1.026 2.75-1.026.55 1.38.2 2.395.1 2.65.64.7 1.03 1.595 1.03 2.688 0 3.84-2.33 4.69-4.56 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .32.22.69.82.57C20.56 22.092 24 17.592 24 12.297 24 5.67 18.63 0 12 0z"/></svg></a>
+                     <a href="mailto:devant.pal@gmail.com" class="text-gray-400 hover:text-white transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></a>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-10">
+                    <div class="lg:col-span-1 space-y-8">
+                        <div>
+                            <h3 class="font-mono text-sm uppercase text-gray-400">WhatsApp Me</h3>
+                            <a href="https://wa.me/917257066615" target="_blank" class="text-lg text-gray-200 hover:text-cyan-400 transition-colors">+91 7257066615</a>
+                        </div>
+                         <div>
+                            <h3 class="font-mono text-sm uppercase text-gray-400">Email Me</h3>
+                            <a href="mailto:devant.pal@gmail.com" class="text-lg text-gray-200 hover:text-cyan-400 transition-colors">devant.pal@gmail.com</a>
+                        </div>
+                         <div>
+                            <h3 class="font-mono text-sm uppercase text-gray-400">Address</h3>
+                            <p class="text-lg text-gray-200">Noida, Uttar Pradesh, India</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-2 contact-form-bg p-8 rounded-lg">
+                        <form action="#" method="POST">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <input type="text" name="name" placeholder="Name" class="form-input md:col-span-1" required>
+                                <input type="email" name="email" placeholder="Email" class="form-input md:col-span-1" required>
+                                <input type="text" name="subject" placeholder="Subject" class="form-input md:col-span-2" required>
+                                <input type="tel" name="contact_no" placeholder="Contact No." class="form-input md:col-span-2">
+                                <textarea name="message" rows="5" placeholder="Message Text..." class="form-input md:col-span-2" required></textarea>
+                            </div>
+                            <div class="mt-6">
+                               <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY_HERE" data-theme="dark"></div>
+                            </div>
+                            <div class="mt-6">
+                                <button type="submit" class="send-btn">SEND MESSAGE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                 <div class="text-center mt-16 font-mono tracking-wider text-gray-500">
+                    LOOKING FORWARD TO HEARING FROM YOU!
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8">
+        <div class="container mx-auto px-6 md:px-24 text-center">
+            <p class="font-mono text-xs text-gray-500">
+                Designed & Built by Devant Pal &copy; 2025
+            </p>
+        </div>
+    </footer>
+           
+    <a href="https://wa.me/917257066615" target="_blank" class="fixed bottom-8 right-8 bg-green-500 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.45L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.269.655 4.398 1.896 6.166l-1.2 4.418 4.562-1.182z"/></svg>
+    </a>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Typed.js for the hero section
+        new Typed('#typed-output', {
+            strings: ['the web.', 'blockchain.', 'the future.', 'IoT.'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true,
+            cursorChar: '_',
+        });
+        
+        // Hide header on scroll down, show on scroll up
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // GSAP fade-in animations for sections
+        const sections = document.querySelectorAll('.fade-in');
+        sections.forEach(section => {
+            gsap.fromTo(section, 
+                { opacity: 0, y: 40 }, 
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // Active link highlighting on scroll
+        const navLinks = document.querySelectorAll('.nav-link');
+        const contentSections = document.querySelectorAll('main section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            contentSections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
